@@ -29,8 +29,7 @@
     "format": "prettier --write '{*,src/**/*}.js'",
     "lint": "eslint '{*,src/**/*}.js'",
     "test": "jest",
-    "build": "rollup -c",
-    "pkg": "yarn publish"
+    "build": "rollup -c"
   },
   "dependencies": {
     "axios": "^0.20.0"
