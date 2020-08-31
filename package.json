@@ -1,0 +1,63 @@
+{
+  "name": "@0y0/reaxios",
+  "version": "1.0.0",
+  "description": "Easy-to-use HTTP client based on axios for the browser and NodeJS.",
+  "src": "src/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "browser": "dist/index.min.js",
+  "repository": "https://github.com/o0y0o/reaxios",
+  "author": "Jason Chung",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "axios",
+    "fetch",
+    "http",
+    "https",
+    "http-client",
+    "http-request",
+    "network",
+    "request",
+    "web",
+    "browser",
+    "nodejs"
+  ],
+  "scripts": {
+    "format": "prettier --write '{*,src/**/*}.js'",
+    "lint": "eslint '{*,src/**/*}.js'",
+    "test": "jest",
+    "build": "rollup -c",
+    "pkg": "yarn publish"
+  },
+  "dependencies": {
+    "axios": "^0.20.0"
+  },
+  "peerDependencies": {
+    "@babel/runtime": "^7.11.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.5",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-export-default-from": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@rollup/plugin-babel": "^5.2.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.3.0",
+    "eslint": "^7.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^26.4.2",
+    "jest-mock-axios": "^4.2.1",
+    "prettier": "^2.1.1",
+    "rollup": "^2.26.8",
+    "rollup-plugin-terser": "^7.0.1"
+  }
+}
