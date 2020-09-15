@@ -1,6 +1,6 @@
 {
   "name": "@0y0/reaxios",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Easy-to-use HTTP client based on axios for the browser and NodeJS.",
   "src": "src/index.js",
   "main": "dist/index.cjs.js",
@@ -12,6 +12,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "axios",
     "fetch",
@@ -38,25 +41,19 @@
     "@babel/runtime": "^7.11.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.5",
+    "@0y0/eslint-config-vanilla": "^1.0.0",
+    "@babel/core": "^7.11.6",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-export-default-from": "^7.10.4",
     "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
-    "@rollup/plugin-babel": "^5.2.0",
-    "babel-eslint": "^10.1.0",
+    "@rollup/plugin-babel": "^5.2.1",
     "babel-jest": "^26.3.0",
-    "eslint": "^7.8.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
+    "eslint": "^7.9.0",
     "jest": "^26.4.2",
     "jest-mock-axios": "^4.2.1",
     "prettier": "^2.1.1",
-    "rollup": "^2.26.8",
-    "rollup-plugin-terser": "^7.0.1"
+    "rollup": "^2.26.11",
+    "rollup-plugin-terser": "^7.0.2"
   }
 }
