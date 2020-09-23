@@ -5,6 +5,7 @@
   "src": "src/index.js",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
+  "iife": "dist/index.min.js",
   "repository": "https://github.com/o0y0o/reaxios",
   "author": "Jason Chung",
   "license": "MIT",
