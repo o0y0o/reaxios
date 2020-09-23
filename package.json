@@ -1,11 +1,10 @@
 {
   "name": "@0y0/reaxios",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Easy-to-use HTTP client based on axios for the browser and NodeJS.",
   "src": "src/index.js",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
-  "browser": "dist/index.min.js",
   "repository": "https://github.com/o0y0o/reaxios",
   "author": "Jason Chung",
   "license": "MIT",
