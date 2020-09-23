@@ -36,7 +36,7 @@ export default [
       })
     ],
     output: {
-      file: path.join(__dirname, pkg.browser),
+      file: path.join(__dirname, pkg.iife),
       format: 'iife',
       name: 'Reaxios',
       globals: { axios: true },
