@@ -71,10 +71,14 @@ Reaxios.post('/api').body('content')
 Reaxios.post('/api').body({ foo: 'bar' })
 
 // Content-Type: multipart/form-data
-Reaxios.post('/api').header('Content-Type', 'multipart/form-data').body(new FormData())
+Reaxios.post('/api')
+  .header('Content-Type', 'multipart/form-data')
+  .body(new FormData())
 
 // Content-Type: application/x-www-form-urlencoded;charset=UTF-8
-Reaxios.post('/api').header('Content-Type', 'application/x-www-form-urlencoded').body(new URLSearchParams())
+Reaxios.post('/api')
+  .header('Content-Type', 'application/x-www-form-urlencoded')
+  .body(new URLSearchParams())
 ```
 
 ### Transform request and response
@@ -82,8 +86,10 @@ Reaxios.post('/api').header('Content-Type', 'application/x-www-form-urlencoded')
 ```js
 Reaxios.post('/api')
   .body('data')
-  .transformRequest(data => ({ data })) // send `{ data: 'data' }` to server
-  .transformResponse(({ data }) => data) // receive `{ data: 'data' }` from server and resolve promise with `'data'`
+  // send `{ data: 'data' }` to server
+  .transformRequest(data => ({ data }))
+  // receive `{ data: 'data' }` from server and resolve promise with `'data'`
+  .transformResponse(({ data }) => data)
 ```
 
 ### Cancel the request
