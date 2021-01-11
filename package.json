@@ -42,7 +42,7 @@
     "@babel/runtime": "^7.11.2"
   },
   "devDependencies": {
-    "@0y0/eslint-config-vanilla": "^1.1.1",
+    "@0y0/eslint-config-vanilla": "^1.1.2",
     "@babel/core": "^7.12.10",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-export-default-from": "^7.10.4",
