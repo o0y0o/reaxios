@@ -1,6 +1,6 @@
 {
   "name": "@0y0/reaxios",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Easy-to-use HTTP client based on axios for the browser and NodeJS.",
   "src": "src/index.js",
   "main": "dist/index.cjs.js",
@@ -36,10 +36,8 @@
     "pkg": "[ $(yarn info $npm_package_name version) != $npm_package_version ] && yarn publish || echo Skip publishing due to v$npm_package_version exist"
   },
   "dependencies": {
+    "@babel/runtime": "^7.0.0",
     "axios": "^0.21.1"
-  },
-  "peerDependencies": {
-    "@babel/runtime": "^7.11.2"
   },
   "devDependencies": {
     "@0y0/babel-preset-vanilla": "^1.1.1",
