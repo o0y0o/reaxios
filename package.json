@@ -46,7 +46,7 @@
     "babel-jest": "^27.0.6",
     "eslint": "^7.29.0",
     "jest": "^27.0.6",
-    "jest-mock-axios": "^4.4.0",
+    "jest-mock-axios": "^4.4.1",
     "prettier": "^2.3.2",
     "rollup": "^2.52.3",
     "rollup-plugin-terser": "^7.0.2"
