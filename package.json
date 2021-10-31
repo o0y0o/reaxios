@@ -36,7 +36,7 @@
     "pkg": "[ $(yarn info $npm_package_name version) != $npm_package_version ] && yarn publish || echo Skip publishing due to v$npm_package_version exist"
   },
   "dependencies": {
-    "@babel/runtime": "^7.14.6",
+    "@babel/runtime": "^7.16.0",
     "axios": "^0.21.1"
   },
   "devDependencies": {
