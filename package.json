@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.0",
-    "axios": "^0.21.1"
+    "axios": "^0.21.4"
   },
   "devDependencies": {
     "@0y0/babel-preset-vanilla": "^1.1.3",
