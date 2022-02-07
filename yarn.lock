@@ -3221,10 +3221,10 @@ jest-message-util@^27.5.0:
     slash "^3.0.0"
     stack-utils "^2.0.3"
 
-jest-mock-axios@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/jest-mock-axios/-/jest-mock-axios-4.4.0.tgz#de0d7cd1219ab780472f774160f9e004245db0f1"
-  integrity sha512-MF5MbjIZcv2KCtO6oH/Fmy1sML1LxQoaGyIPRGArDdd9pcsfjWoCmFFUD12GgOTeJw8ChjuVYHN0s8QnhGriQA==
+jest-mock-axios@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/jest-mock-axios/-/jest-mock-axios-4.5.0.tgz#9862bcbea6c0f9c42bc8a125169eaeea514b2f56"
+  integrity sha512-AVrXkFS4psXtuR63J3SFOIpn6VQJHb3khuWJG+yKmSOAvY3jltAkBivV99QTWE+BA6kBYGGUojk6AGE177F8Gw==
   dependencies:
     synchronous-promise "^2.0.15"
 
