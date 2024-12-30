@@ -37,7 +37,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.26.0",
-    "axios": "^1.7.9"
+    "axios": "^1.7.9",
+    "axios-mock-adapter": "^2.1.0"
   },
   "devDependencies": {
     "@0y0/babel-preset-vanilla": "^1.1.7",

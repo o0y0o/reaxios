@@ -21,8 +21,8 @@ export default class Reaxios {
   #params = {}
   #body
   #abortController
-  #requestTransformer = val => val
-  #responseTransformer = val => val.data
+  #requestTransformers = []
+  #responseTransformers = []
 
   constructor(url, method = 'GET') {
     if (!url) throw new TypeError('URL is required')
@@ -58,12 +58,16 @@ export default class Reaxios {
   }
 
   transformRequest(fn) {
-    if (isFn(fn)) this.#requestTransformer = fn
+    if (fn == null) this.#requestTransformers = []
+    if (isFn(fn)) this.#requestTransformers.push(fn)
+    if (Array.isArray(fn)) fn.forEach(f => this.transformRequest(f))
     return this
   }
 
   transformResponse(fn) {
-    if (isFn(fn)) this.#responseTransformer = fn
+    if (fn == null) this.#responseTransformers = []
+    if (isFn(fn)) this.#responseTransformers.push(fn)
+    if (Array.isArray(fn)) fn.forEach(f => this.transformResponse(f))
     return this
   }
 
@@ -79,10 +83,12 @@ export default class Reaxios {
       headers: this.#headers,
       params: this.#params,
       data: this.#body,
-      transformRequest: [this.#requestTransformer],
-      transformResponse: [this.#responseTransformer],
+      transformRequest: this.#requestTransformers,
+      transformResponse: this.#responseTransformers,
       signal: this.#abortController.signal
-    }).then(onFulfill, onReject)
+    })
+      .then(response => response.data)
+      .then(onFulfill, onReject)
     return new Repromise(promise, () => this.cancel())
   }
 
