@@ -75,7 +75,7 @@ export default class Reaxios {
     this.#abortController.abort()
   }
 
-  async then(onFulfill, onReject) {
+  then(onFulfill, onReject) {
     const promise = (async () => {
       let data = this.#body
       for (const transformer of this.#requestTransformers)
