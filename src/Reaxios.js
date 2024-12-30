@@ -20,9 +20,9 @@ export default class Reaxios {
   #headers = {}
   #params = {}
   #body
-  #abortController
+  #abortController = new AbortController()
   #requestTransformers = []
-  #responseTransformers = []
+  #responseTransformers = [response => response.data]
 
   constructor(url, method = 'GET') {
     if (!url) throw new TypeError('URL is required')
@@ -57,38 +57,44 @@ export default class Reaxios {
     return this
   }
 
-  transformRequest(fn) {
-    if (fn == null) this.#requestTransformers = []
-    if (isFn(fn)) this.#requestTransformers.push(fn)
-    if (Array.isArray(fn)) fn.forEach(f => this.transformRequest(f))
+  transformRequest(...transformers) {
+    if (transformers.length)
+      this.#requestTransformers.push(...transformers.filter(isFn))
+    else this.#requestTransformers = []
     return this
   }
 
-  transformResponse(fn) {
-    if (fn == null) this.#responseTransformers = []
-    if (isFn(fn)) this.#responseTransformers.push(fn)
-    if (Array.isArray(fn)) fn.forEach(f => this.transformResponse(f))
+  transformResponse(...transformers) {
+    if (transformers.length)
+      this.#responseTransformers.push(...transformers.filter(isFn))
+    else this.#responseTransformers = []
     return this
   }
 
   cancel() {
-    this.#abortController?.abort()
+    this.#abortController.abort()
   }
 
-  then(onFulfill, onReject) {
-    this.#abortController = new AbortController()
-    const promise = axios({
-      url: this.#url,
-      method: this.#method,
-      headers: this.#headers,
-      params: this.#params,
-      data: this.#body,
-      transformRequest: this.#requestTransformers,
-      transformResponse: this.#responseTransformers,
-      signal: this.#abortController.signal
-    })
-      .then(response => response.data)
-      .then(onFulfill, onReject)
+  async then(onFulfill, onReject) {
+    const promise = (async () => {
+      let data = this.#body
+      for (const transformer of this.#requestTransformers)
+        data = await transformer(data)
+
+      let response = await axios({
+        url: this.#url,
+        method: this.#method,
+        headers: this.#headers,
+        params: this.#params,
+        data,
+        signal: this.#abortController.signal
+      })
+      for (const transformer of this.#responseTransformers)
+        response = await transformer(response)
+
+      return response
+    })().then(onFulfill, onReject)
+
     return new Repromise(promise, () => this.cancel())
   }
 
