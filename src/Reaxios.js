@@ -20,7 +20,7 @@ export default class Reaxios {
   #headers = {}
   #params = {}
   #body
-  #cancel
+  #abortController
   #requestTransformer = val => val
   #responseTransformer = val => val.data
 
@@ -68,20 +68,21 @@ export default class Reaxios {
   }
 
   cancel() {
-    this.#cancel?.()
+    this.#abortController?.abort()
   }
 
   then(onFulfill, onReject) {
+    this.#abortController = new AbortController()
     const promise = axios({
       url: this.#url,
       method: this.#method,
       headers: this.#headers,
       params: this.#params,
-      data: this.#requestTransformer(this.#body),
-      cancelToken: new axios.CancelToken(c => (this.#cancel = c))
-    })
-      .then(this.#responseTransformer)
-      .then(onFulfill, onReject)
+      data: this.#body,
+      transformRequest: [this.#requestTransformer],
+      transformResponse: [this.#responseTransformer],
+      signal: this.#abortController.signal
+    }).then(onFulfill, onReject)
     return new Repromise(promise, () => this.cancel())
   }
 
