@@ -20,9 +20,9 @@ export default class Reaxios {
   #headers = {}
   #params = {}
   #body
-  #cancel
-  #requestTransformer = val => val
-  #responseTransformer = val => val.data
+  #abortController
+  #requestTransformers = []
+  #responseTransformers = []
 
   constructor(url, method = 'GET') {
     if (!url) throw new TypeError('URL is required')
@@ -58,29 +58,36 @@ export default class Reaxios {
   }
 
   transformRequest(fn) {
-    if (isFn(fn)) this.#requestTransformer = fn
+    if (fn == null) this.#requestTransformers = []
+    if (isFn(fn)) this.#requestTransformers.push(fn)
+    if (Array.isArray(fn)) fn.forEach(f => this.transformRequest(f))
     return this
   }
 
   transformResponse(fn) {
-    if (isFn(fn)) this.#responseTransformer = fn
+    if (fn == null) this.#responseTransformers = []
+    if (isFn(fn)) this.#responseTransformers.push(fn)
+    if (Array.isArray(fn)) fn.forEach(f => this.transformResponse(f))
     return this
   }
 
   cancel() {
-    this.#cancel?.()
+    this.#abortController?.abort()
   }
 
   then(onFulfill, onReject) {
+    this.#abortController = new AbortController()
     const promise = axios({
       url: this.#url,
       method: this.#method,
       headers: this.#headers,
       params: this.#params,
-      data: this.#requestTransformer(this.#body),
-      cancelToken: new axios.CancelToken(c => (this.#cancel = c))
+      data: this.#body,
+      transformRequest: this.#requestTransformers,
+      transformResponse: this.#responseTransformers,
+      signal: this.#abortController.signal
     })
-      .then(this.#responseTransformer)
+      .then(response => response.data)
       .then(onFulfill, onReject)
     return new Repromise(promise, () => this.cancel())
   }
