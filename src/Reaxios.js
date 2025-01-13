@@ -58,16 +58,12 @@ export default class Reaxios {
   }
 
   transformRequest(...transformers) {
-    if (transformers.length)
-      this.#requestTransformers.push(...transformers.filter(isFn))
-    else this.#requestTransformers = []
+    this.#requestTransformers = [...transformers.filter(isFn)]
     return this
   }
 
   transformResponse(...transformers) {
-    if (transformers.length)
-      this.#responseTransformers.push(...transformers.filter(isFn))
-    else this.#responseTransformers = []
+    this.#responseTransformers.push(...transformers.filter(isFn))
     return this
   }
 
