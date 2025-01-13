@@ -75,7 +75,7 @@ export default class Reaxios {
     const promise = (async () => {
       let data = this.#body
       for (const transformer of this.#requestTransformers)
-        data = await transformer(data)
+        data = await transformer(data, this.#headers)
 
       let response = await axios({
         url: this.#url,
