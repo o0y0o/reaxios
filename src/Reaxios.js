@@ -63,7 +63,7 @@ export default class Reaxios {
   }
 
   transformResponse(...transformers) {
-    this.#responseTransformers.push(...transformers.filter(isFn))
+    this.#responseTransformers = [...transformers.filter(isFn)]
     return this
   }
 
